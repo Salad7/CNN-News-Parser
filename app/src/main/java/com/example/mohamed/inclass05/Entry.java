@@ -8,8 +8,16 @@ public class Entry {
 
     private String title;
     private String desc;
-    //NEed date
+    private String pubDate;
     private String imgUrl;
+
+    public String getPubDate() {
+        return pubDate;
+    }
+
+    public void setPubDate(String pubDate) {
+        this.pubDate = pubDate;
+    }
 
     Entry(){
 

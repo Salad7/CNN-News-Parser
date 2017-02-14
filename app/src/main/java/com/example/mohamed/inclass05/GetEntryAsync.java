@@ -1,6 +1,7 @@
 package com.example.mohamed.inclass05;
 
 import android.os.AsyncTask;
+import android.util.Log;
 
 import org.xml.sax.SAXException;
 
@@ -42,6 +43,7 @@ public class GetEntryAsync extends AsyncTask<String,Void, ArrayList<Entry>> {
     @Override
     protected void onPostExecute(ArrayList<Entry> entries) {
         super.onPostExecute(entries);
+        Log.d("dd",entries.get(0).getTitle());
     }
 
     @Override
@@ -63,6 +65,7 @@ public class GetEntryAsync extends AsyncTask<String,Void, ArrayList<Entry>> {
                 int statusCode = con.getResponseCode();
                 if(statusCode == HttpURLConnection.HTTP_OK){
                     InputStream in = con.getInputStream();
+                    Log.d("dd","ssssssss");
                     return EntryUtils.EntriesSAXParser.parseEntries(in);
                 }
             } catch (MalformedURLException e) {
