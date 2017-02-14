@@ -2,6 +2,8 @@ package com.example.mohamed.inclass05;
 
 import android.os.AsyncTask;
 
+import org.xml.sax.SAXException;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -18,6 +20,12 @@ import static java.lang.System.in;
  */
 //Passing in a String through params, Void return, Data will be indiviual Entry
 public class GetEntryAsync extends AsyncTask<String,Void, ArrayList<Entry>> {
+
+    private MainActivity activity;
+    GetEntryAsync(MainActivity activity){
+        this.activity = activity;
+
+    }
     //Progress update
     @Override
     protected void onProgressUpdate(Void... values) {
@@ -57,14 +65,12 @@ public class GetEntryAsync extends AsyncTask<String,Void, ArrayList<Entry>> {
                     InputStream in = con.getInputStream();
                     return EntryUtils.EntriesSAXParser.parseEntries(in);
                 }
-
-                //return DataUtil.DataJSONParser.parseData(sb.toString());
-                return EntryUtils.EntriesSAXParser.parseEntries(in);
             } catch (MalformedURLException e) {
                 e.printStackTrace();
             } catch (IOException e) {
                 e.printStackTrace();
-            } finally {
+            } catch (SAXException e) {
+            }finally {
                 try {
                     if (reader != null) {
                         reader.close();
