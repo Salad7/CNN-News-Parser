@@ -1,4 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
+
+<!--
+    Assignment #: In Class 04
+    File Name: activity_main.xml
+    Group Members: Brian Bystrom, Mohamed Salad
+-->
+
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -9,36 +16,103 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.example.mohamed.inclass05.MainActivity">
+    >
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/news_source_label"
+        android:id="@+id/news_source_label" />
+
+    <Spinner
+        android:visibility="gone"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/source_spinner"
+        android:layout_alignBaseline="@+id/news_source_label"
+        android:layout_alignBottom="@+id/news_source_label"
+        android:layout_toRightOf="@+id/news_source_label"
+        android:layout_toEndOf="@+id/news_source_label"
+        android:layout_marginLeft="44dp"
+        android:layout_marginStart="44dp" />
 
     <Button
-        android:text="Get News"
+        android:text="@string/get_news_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="29dp"
-        android:id="@+id/button" />
+        android:id="@+id/get_news_btn"
+        android:layout_below="@+id/source_spinner"
+        android:layout_toRightOf="@+id/news_source_label"
+        android:layout_toEndOf="@+id/news_source_label" />
 
     <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:srcCompat="@mipmap/ic_launcher"
-        android:layout_below="@+id/button"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="53dp"
-        android:id="@+id/imageView" />
+        android:layout_width="200dp"
+        android:layout_height="100dp"
+        android:id="@+id/article_image"
+        android:layout_marginTop="12dp"
+        android:layout_below="@+id/get_news_btn"
+        android:layout_alignRight="@+id/source_spinner"
+        android:layout_alignEnd="@+id/source_spinner" />
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@+id/imageView"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="78dp">
+        android:fillViewport="false"
+        android:id="@+id/news_data"
+        android:layout_height="200dp"
+        android:layout_below="@+id/article_image"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical" />
     </ScrollView>
+
+    <ImageButton
+        android:layout_width="45dp"
+        app:srcCompat="@drawable/first"
+        android:id="@+id/btn_first"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <Button
+        android:text="@string/finish_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/finish_btn" />
+
+    <ImageButton
+        android:layout_width="45dp"
+        android:layout_height="50dp"
+        app:srcCompat="@drawable/previous"
+        android:id="@+id/btn_prev"
+        android:layout_alignParentBottom="true"
+        android:layout_alignLeft="@+id/article_image"
+        android:layout_alignStart="@+id/article_image" />
+
+    <ImageButton
+        android:layout_width="45dp"
+        android:layout_height="50dp"
+        app:srcCompat="@drawable/next"
+        android:layout_alignParentBottom="true"
+        android:layout_toRightOf="@+id/finish_btn"
+        android:layout_toEndOf="@+id/finish_btn"
+        android:layout_marginLeft="15dp"
+        android:layout_marginStart="15dp"
+        android:id="@+id/btn_next" />
+
+    <ImageButton
+        android:layout_width="45dp"
+        android:layout_height="50dp"
+        app:srcCompat="@drawable/last"
+        android:layout_alignTop="@+id/finish_btn"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:id="@+id/btn_last" />
+
 </RelativeLayout>

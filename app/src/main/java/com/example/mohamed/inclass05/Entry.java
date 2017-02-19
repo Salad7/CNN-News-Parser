@@ -19,9 +19,9 @@ public class Entry {
         this.pubDate = pubDate;
     }
 
-    Entry(){
-
-    }
+//    Entry(){
+//
+//    }
 
     public String getTitle() {
         return title;

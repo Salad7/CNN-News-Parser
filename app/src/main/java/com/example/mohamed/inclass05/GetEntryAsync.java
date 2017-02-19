@@ -22,8 +22,8 @@ import static java.lang.System.in;
 //Passing in a String through params, Void return, Data will be indiviual Entry
 public class GetEntryAsync extends AsyncTask<String,Void, ArrayList<Entry>> {
 
-    private MainActivity activity;
-    GetEntryAsync(MainActivity activity){
+    private IData activity;
+    GetEntryAsync(IData activity){
         this.activity = activity;
 
     }
@@ -43,7 +43,8 @@ public class GetEntryAsync extends AsyncTask<String,Void, ArrayList<Entry>> {
     @Override
     protected void onPostExecute(ArrayList<Entry> entries) {
         super.onPostExecute(entries);
-        Log.d("dd",entries.get(0).getTitle());
+        Log.d("dLLL",entries.get(0).getTitle());
+        activity.setupData(entries);
     }
 
     @Override
@@ -65,7 +66,7 @@ public class GetEntryAsync extends AsyncTask<String,Void, ArrayList<Entry>> {
                 int statusCode = con.getResponseCode();
                 if(statusCode == HttpURLConnection.HTTP_OK){
                     InputStream in = con.getInputStream();
-                    Log.d("dd","ssssssss");
+                   // Log.d("dd","ssssssss"); WOrks
                     return EntryUtils.EntriesSAXParser.parseEntries(in);
                 }
             } catch (MalformedURLException e) {
@@ -85,5 +86,8 @@ public class GetEntryAsync extends AsyncTask<String,Void, ArrayList<Entry>> {
 
 
             return null;
+    }
+    static public interface IData {
+        public void setupData(ArrayList<Entry> s);
     }
 }
