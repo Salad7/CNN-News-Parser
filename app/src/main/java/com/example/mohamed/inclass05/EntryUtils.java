@@ -61,6 +61,10 @@ public class EntryUtils {
                 //e.setDesc("description");
                 //e.setImgUrl(attributes.getValue("media:group"));
             }
+            else if(qName.equals("media:content")){
+                Log.d("Yuppers","Found media content"); //works
+                Log.d("Checking for atts ",attributes.getValue("height")); //Got us attributes!
+            }
         }
 
         @Override
