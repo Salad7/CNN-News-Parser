@@ -49,7 +49,7 @@ public class MainActivity extends AppCompatActivity implements  GetEntryAsync.ID
 
             setArticleInformation(current_article, s);
 
-            //new SetImageAsync(MainActivity.this).execute(s.get(0).getUrlToImage().toString());
+            new GetImageAsync(MainActivity.this).execute(s.get(0).getImgUrl().toString());
 
 
             first_btn.setOnClickListener(new View.OnClickListener() {
@@ -114,19 +114,18 @@ public class MainActivity extends AppCompatActivity implements  GetEntryAsync.ID
         TextView tvCreatedOn = new TextView(this);
         TextView tvDescription = new TextView(this);
 
-        tvTitle.setText(s.get(number).getTitle().toString());
+        tvTitle.setText(s.get(number).getTitle());
        // tvAuthor.setText("Description: " + s.get(number).getDesc().toString());
-        tvCreatedOn.setText("Published On: " + s.get(number).getPubDate().toString());
-        tvDescription.setText("\nDescription: \n" + s.get(number).getDesc().toString());
+        tvCreatedOn.setText("Published On: " + s.get(number).getPubDate());
+        tvDescription.setText("\nDescription: \n" + s.get(number).getDesc());
 
         ll.addView(tvTitle);
-       // ll.addView(tvAuthor);
         ll.addView(tvCreatedOn);
         ll.addView(tvDescription);
 
         sv.addView(ll);
 
-        //new SetImageAsync(MainActivity.this).execute(s.get(number).getUrlToImage().toString());
+        new GetImageAsync(MainActivity.this).execute(s.get(number).getImgUrl());
 
     }
 

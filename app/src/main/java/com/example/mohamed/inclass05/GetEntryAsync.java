@@ -43,7 +43,7 @@ public class GetEntryAsync extends AsyncTask<String,Void, ArrayList<Entry>> {
     @Override
     protected void onPostExecute(ArrayList<Entry> entries) {
         super.onPostExecute(entries);
-        Log.d("dLLL",entries.get(0).getTitle());
+        //Log.d("dLLL",entries.get(2).getImgUrl()); Works
         activity.setupData(entries);
     }
 

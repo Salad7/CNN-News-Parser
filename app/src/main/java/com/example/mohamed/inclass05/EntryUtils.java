@@ -24,6 +24,7 @@ public class EntryUtils {
         StringBuilder xmlInnerText = new StringBuilder();
         Entry e;
         int count  = 0;
+        String url;
 
         static public ArrayList<Entry> parseEntries(InputStream in) throws IOException, SAXException{
 
@@ -62,8 +63,9 @@ public class EntryUtils {
                 //e.setImgUrl(attributes.getValue("media:group"));
             }
             else if(qName.equals("media:content")){
-                Log.d("Yuppers","Found media content"); //works
-                Log.d("Checking for atts ",attributes.getValue("height")); //Got us attributes!
+                //Log.d("Yuppers","Found media content"); //works
+                //Log.d("Checking for atts ",attributes.getValue("height")); //Got us attributes! Works
+                url = attributes.getValue("url");
             }
         }
 
@@ -77,6 +79,7 @@ public class EntryUtils {
                 //e.setPubDate("pubdate");
                 //e.setDesc("description");
                 //e.setImgUrl(attributes.getValue("media:group"));
+                e.setImgUrl(url);
                 entryList.add(e);
             }
             else if (localName.equals("title") && count != 0){
@@ -87,12 +90,12 @@ public class EntryUtils {
                 e.setPubDate(xmlInnerText.toString());
             }
             else if (localName.equals("description") && count != 0){
-                e.setDesc(xmlInnerText.toString());
+                e.setDesc(xmlInnerText.toString().trim());
             }
-            else if (localName.equals("media:content") && count != 0){
-                e.setImgUrl(xmlInnerText.toString());
-                Log.d("Image","Found an image link is "+xmlInnerText.toString());
-            }
+           // else if (localName.equals("media:content") && count != 0){
+             //   e.setImgUrl(xmlInnerText.toString());
+               // Log.d("Image","Found an image link is "+xmlInnerText.toString());
+            //}
             else if(localName.equals("item")){
                 Log.d("Found bullshit","Dont Include!");
                 count = 1;
@@ -103,10 +106,19 @@ public class EntryUtils {
         @Override
         public void characters(char[] ch, int start, int length) throws SAXException {
             super.characters(ch, start, length);
+            int Tlength = 0;
+            for(int i = 0; i < ch.length; i++){
+                //WE need to find where the thing ends in >
+                //We retrieve details here
+                if(ch[i] == '.'){
+                    Log.d("Found div  at position " + i + " stop adding","Found div stop appending,breaking");
+                    Tlength = i;
+                    break;
+                }
+            }
 
-            //We retrieve details here
+            xmlInnerText.append(ch,start,Tlength);
 
-            xmlInnerText.append(ch,start,length);
         }
         public ArrayList<Entry> getEntryList() {
             return entryList;

@@ -45,15 +45,6 @@
         android:layout_toRightOf="@+id/news_source_label"
         android:layout_toEndOf="@+id/news_source_label" />
 
-    <ImageView
-        android:layout_width="200dp"
-        android:layout_height="100dp"
-        android:id="@+id/article_image"
-        android:layout_marginTop="12dp"
-        android:layout_below="@+id/get_news_btn"
-        android:layout_alignRight="@+id/source_spinner"
-        android:layout_alignEnd="@+id/source_spinner" />
-
     <ScrollView
         android:layout_width="match_parent"
         android:fillViewport="false"
@@ -114,5 +105,13 @@
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
         android:id="@+id/btn_last" />
+
+    <ImageView
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:id="@+id/article_image"
+        android:layout_marginTop="12dp"
+        android:layout_below="@+id/get_news_btn"
+        android:layout_centerHorizontal="true" />
 
 </RelativeLayout>
